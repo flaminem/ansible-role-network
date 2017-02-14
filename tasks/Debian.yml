@@ -25,7 +25,7 @@
   register: ifconfig_result_down
   changed_when: "'UP ' in ifconfig_result_down.stdout"
   with_items: network_interfaces_disabled
-  always_run: yes
+  check_mode: no
   tags: [configuration,network]
 
 - name: Disable UP interfaces in disabled list
@@ -45,7 +45,7 @@
   register: ifconfig_result_up
   changed_when: "'UP ' not in ifconfig_result_up.stdout"
   with_items: network_interfaces
-  always_run: yes
+  check_mode: no
   tags: [configuration,network]
 
 - name: Ensure all enable interfaces are UP
